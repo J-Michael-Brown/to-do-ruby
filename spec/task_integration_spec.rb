@@ -8,17 +8,25 @@ require('spec_helper')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
+def start_test(string)
+  visit('/')
+  fill_in('new-list', :with => string)
+  click_button('Make My List!')
+  click_link(string)
+end
+
 describe('Task add testing', {:type => :feature}) do
 
-  test_list = List.new({:name => "tester", :id =>nil})
-  test_list.save
-  test_id = test_list.id.to_i
-
   it('view new task') do
-    site = ('/my_list/' + test_id.to_s)
-    visit(site)
-    expect(page).to have_content('tester')
+    start_test('tester')
+    expect(page).to have_content('Enter task description:')
   end
 
+  it('view new task') do
+    start_test('tester')
+    fill_in('new-task', :with => 'This is a new task!')
+    click_button('Submit!')
+    expect(page).to have_content('This is a new task!')
+  end
 
 end
