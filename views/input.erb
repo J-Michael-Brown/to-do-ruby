@@ -1,0 +1,65 @@
+<div class="container input-form-box">
+  <h4>Enter Contact Information:</h4>
+  <form action="/user_input" method="post">
+    <div>
+      <label for="first_name">First Name:</label>
+      <input type="text" name="first_name">
+    </div>
+    <div>
+      <label for="last_name">Last Name:</label>
+      <input type="text" name="last_name">
+    </div>
+    <div>
+      <label for="job">Job Title:</label>
+      <input type="text" name="job">
+    </div>
+    <div>
+      <label for="company">Company:</label>
+      <input type="text" name="company">
+    </div>
+    <div>
+      <label for="type">Contact Type:</label>
+      <input type="text" name="type">
+    </div>
+    <div>
+      <label for="address">Street Address:</label>
+      <input type="text" name="address">
+    </div>
+    <div>
+      <label for="city">City:</label>
+      <input type="text" name="city">
+    </div>
+    <div>
+      <label for="state">State:</label>
+      <input type="text" name="state">
+    </div>
+    <div>
+      <label for="zip_code">ZIP Code:</label>
+      <input type="text" name="zip_code">
+    </div>
+    <div class="button">
+    <button type="button-default button submit" name="button">Create</button>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <% Address::Contact.all.each do |x| %>
+  <div class="output-form-box">
+    <a href="/contact<%= x.id %>"><%= x.first_name %></a><br>
+  </div>
+
+  <% end %>
+</div>
+
+
+<div class="container input-form-box">
+  <h1>Contact Information:</h1>
+  <p><%= @first_name %> <%= @last_name %></p>
+  <p><%= @address %></p>
+  <p><%= @city %> <%= @state %> <%= @zip_code %></p>
+  <p><%= @job %> <%= @company %></p>
+  <p><%= @type %></p>
+    <!-- <output name="result">First Name: <%= @first_name %></output> -->
+  <p><%= @first_name %></p>
+</div>
