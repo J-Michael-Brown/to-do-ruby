@@ -1,7 +1,16 @@
+<h5>Input Page</h5>
+
+<hr></hr>
+
 <form action="/" method="post">
-  <input type="text" name="new-list" placeholder="New list name">
+  <label for="new-list">Enter a name for the List:</label>
+  <input id="new-list" type="text" name="new-list" placeholder="New list name">
   <button type="submit" name="new-list-btn">Make My List!</button>
 </form>
+
+<hr></hr>
+
+<h6>Below are your lists:</h6>
 
 <% @lists.each do |list| %>
   <p><a href="/my_list/<%= list.id %>"><%= list.name %></a><p>

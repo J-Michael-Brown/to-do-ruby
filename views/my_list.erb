@@ -3,3 +3,11 @@
 <% @tasks.each do |task| %>
 <p><%= task.description %><p>
 <% end %>
+
+<form action="/my_list/<%=@list.id%>" method="post">
+  <label for="new-task">Enter task description:</label>
+  <input type="text" name="new-task" placeholder="New task name">
+  <button type="submit" name="new-task-btn">Submit!</button>
+</form>
+
+<a href="/">Home</a>
