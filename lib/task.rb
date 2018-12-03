@@ -11,7 +11,7 @@ class Task
     tasks = []
     returned_tasks.each() do |task|
       description = task.fetch("description")
-      list_id = task.fetch("list_id").to_i() # The information comes out of the database as a string.
+      list_id = task.fetch("list_id").to_i()
       tasks.push(Task.new({:description => description, :list_id => list_id}))
     end
     tasks
