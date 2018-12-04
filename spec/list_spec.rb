@@ -1,4 +1,5 @@
 require('spec_helper')
+require('pry')
 
 describe(List) do
   describe(".all") do
@@ -37,4 +38,28 @@ describe(List) do
       expect(list1).to(eq(list2))
     end
   end
+
+  describe("#delete!") do
+    it "deletes list from database" do
+      list3 = List.new({:name => "deletion test", :id => nil})
+      list3.save()
+      expect(List.all()).to(eq([list3]))
+      list3.delete!()
+      expect(List.all()).to(eq([]))
+    end
+  end
+
+  describe("#delete!") do
+    it "deletes list from database and all tasks for that list" do
+      list3 = List.new({:name => "deletion test", :id => nil})
+      list3.save()
+      task1 = Task.new(:description => 'A task', :list_id => list3.id)
+      task1.save
+      length = Task.all.length
+      expect(Task.all.length).to(eq(length))
+      list3.delete!()
+      expect(Task.all.length).to(eq(length - 1))
+    end
+  end
+
 end

@@ -24,4 +24,10 @@ class Task
   def ==(another_task)
     self.description().==(another_task.description()).&(self.list_id().==(another_task.list_id()))
   end
+
+  def delete()
+    DB.exec("DELETE FROM tasks Where list_id = #{self.list_id} AND description = '#{self.description}'")
+    new_list = Task.all
+    new_list.include?(self)
+  end
 end

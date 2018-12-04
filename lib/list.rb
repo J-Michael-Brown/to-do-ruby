@@ -25,4 +25,16 @@ class List
   def ==(another_list)
     self.name().==(another_list.name()).&(self.id().==(another_list.id()))
   end
+
+  def delete!()
+    DB.exec("DELETE FROM lists Where id = #{self.id}")
+    DB.exec("DELETE FROM tasks Where list_id = #{self.id}")
+    new_list = List.all
+    if new_list.include?(self)
+      return 'deleted'
+    else
+      return 'didn\'t work'
+    end
+  end
+
 end

@@ -36,4 +36,17 @@ describe(Task) do
       expect(task1).to(eq(task2))
     end
   end
+
+  describe("#delete") do
+    it("deletes task from database") do
+      task1 = Task.new({:description => "learn SQL", :list_id => 1})
+      task1.save
+      task2 = Task.new({:description => "learn MS Access", :list_id => 1})
+      task2.save
+      task1.delete
+      expect(Task.all.include?(task1)).to(eq(false))
+      expect(Task.all.include?(task2)).to(eq(true))
+    end
+  end
+
 end

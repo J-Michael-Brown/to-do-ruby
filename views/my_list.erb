@@ -1,13 +1,20 @@
 <h2><%= @list.name %></h2>
 
+<% index = 0 %>
 <% @tasks.each do |task| %>
 <p><%= task.description %><p>
+  <button id="<%=index%>" action="/my_list/<%=@list.id%>" method="get" name="delete-<%=index%>">Delete!</button>
+
+  <%index+=1%>
 <% end %>
+
+<!-- onclick=task.delete" -->
 
 <form action="/my_list/<%=@list.id%>" method="post">
   <label for="new-task">Enter task description:</label>
   <input type="text" name="new-task" placeholder="New task name">
   <button type="submit" name="new-task-btn">Submit!</button>
 </form>
+
 
 <a href="/">Home</a>
