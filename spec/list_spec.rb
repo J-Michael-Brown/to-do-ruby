@@ -31,6 +31,14 @@ describe(List) do
     end
   end
 
+  describe(".find") do
+    it "returns a stored list based on the given Id." do
+      list = List.new({:name => "Finder Tester", :id => nil})
+      list.save()
+      expect(List.find(list.id)).to(eq(list))
+    end
+  end
+
   describe("#==") do
     it("is the same list if it has the same name") do
       list1 = List.new({:name => "Epicodus stuff", :id => nil})

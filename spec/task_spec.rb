@@ -49,4 +49,23 @@ describe(Task) do
     end
   end
 
+  describe('.find') do
+    it "takes an id and returns the task object associated with that id" do
+      task_found = Task.new({
+        :description => "Find task",
+        :list_id => 5})
+      task_found.save
+      expect(Task.find(task_found.id)).to(eq(task_found))
+    end
+  end
+
+  describe('#update') do
+    it "updates a selected task with a new description" do
+      task1 = Task.new({:description => "version 1.0", :list_id => 1})
+      task1.save
+      task1.update({:description => "version 1.1"})
+      expect(task1.description).to(eq("version 1.1"))
+      expect(Task.find(task1.id)).to(eq(task1))
+    end
+  end
 end

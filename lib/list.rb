@@ -22,6 +22,14 @@ class List
     @id = result.first().fetch("id").to_i()
   end
 
+  def self.find(id)
+    result = DB.exec("SELECT * FROM lists WHERE id = #{id};")
+    output_list = List.new({
+      :name => result.first.fetch("name"),
+      :id => result.first.fetch("id").to_i
+      })
+  end
+
   def ==(another_list)
     self.name().==(another_list.name()).&(self.id().==(another_list.id()))
   end
