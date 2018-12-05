@@ -1,0 +1,10 @@
+<p><%= @task.description %></p>
+<form action="/my_list/<%=@task.list_id%>/<%=@task.id%>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit"  name="delete">Delete this task</button>
+</form>
+<form action="/my_list/task/<%=@task.id%>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input type="text" name="description">
+  <button type="submit" name="update">Update!</button>
+</form>

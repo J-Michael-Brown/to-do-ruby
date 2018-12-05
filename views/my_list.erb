@@ -2,11 +2,8 @@
 
 <% index = 0 %>
 <% @tasks.each do |task| %>
-  <p><%= task.description %><p>
-    <form name="<%=task.id%>" action="/my_list/<%=@list.id%>/<%=task.id%>" method="post">
-      <input name="_method" type="hidden" value="delete">
-      <button type="submit"  name="delete-<%=index%>">Delete!</button>
-    </form>
+  <p><%= task.description %> <a href="/my_list/task/<%=task.id%>">Alter this task</a></p>
+
 
   <%index+=1%>
 <% end %>
